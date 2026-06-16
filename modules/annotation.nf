@@ -73,9 +73,6 @@ process VIBRANT {
     tag "$meta.id"
     publishDir "${params.outdir}/${meta.id}/vibrant", mode: 'copy'
 
-    when:
-    !params.skip_vibrant
-
     input:
     tuple val(meta), path(genome)
 
@@ -89,11 +86,8 @@ process VIBRANT {
         -i $genome \\
         -f nucl \\
         -t $task.cpus \\
-        -m ${vdb}/files/VIBRANT_machine_model.sav \\
-        -k ${vdb}/databases/KEGG_profiles_prokaryotes.HMM \\
-        -v ${vdb}/databases/VOGDB94_phage.HMM \\
-        -p ${vdb}/databases/Pfam-A_v32.HMM \\
-        -e ${vdb}/databases/Pfam-A_plasmid_v32.HMM \\
-        -a ${vdb}/databases/Pfam-A_phage_v32.HMM
+        -no_plot \\
+        -d ${vdb}/databases \\
+        -m ${vdb}/files
     """
 }
