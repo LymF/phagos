@@ -129,15 +129,12 @@ workflow {
         ch_depth.ifEmpty(ch_no_file)
     )
 
-    // ── Completion summary ────────────────────────────────────────────────
+    // Capture params before onComplete closure (NF 26 scope requirement)
+    def _outdir = params.outdir
+    def _sample = params.sample
     workflow.onComplete {
-        log.info """
-        ╔══════════════════════════════════════════════════╗
-        ║  Pipeline ${workflow.success ? "completed ✓" : "FAILED ✗"}
-        ║  Duration : ${workflow.duration}
-        ║  Outdir   : ${params.outdir}/${params.sample}/
-        ╚══════════════════════════════════════════════════╝
-        """.stripIndent()
+        def status = workflow.success ? "completed" : "FAILED"
+        log.info "PHAGOS ${status} | duration: ${workflow.duration} | results: ${_outdir}/${_sample}/"
     }
 }
 
