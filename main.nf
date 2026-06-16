@@ -23,17 +23,6 @@ include { COMPARATIVE_PREP; CLINKER; CLINKER_PHROGS } from './modules/comparativ
 include { PHYLO_PREP; MAFFT; TRIMAL; IQTREE }        from './modules/phylogeny'
 include { GENOME_MAP }                                from './modules/genome_map'
 
-// ── Completion summary (must be declared before workflow{} in NF 26+) ─────
-workflow.onComplete {
-    log.info """
-    ╔══════════════════════════════════════════════════╗
-    ║  Pipeline ${workflow.success ? "completed ✓" : "FAILED ✗"}
-    ║  Duration : ${workflow.duration}
-    ║  Outdir   : ${params.outdir}/${params.sample}/
-    ╚══════════════════════════════════════════════════╝
-    """.stripIndent()
-}
-
 // ── Required parameter validation ─────────────────────────────────────────
 def validate_params() {
     def errors = []
@@ -139,5 +128,16 @@ workflow {
         ch_genome,
         ch_depth.ifEmpty(ch_no_file)
     )
+
+    // ── Completion summary ────────────────────────────────────────────────
+    workflow.onComplete {
+        log.info """
+        ╔══════════════════════════════════════════════════╗
+        ║  Pipeline ${workflow.success ? "completed ✓" : "FAILED ✗"}
+        ║  Duration : ${workflow.duration}
+        ║  Outdir   : ${params.outdir}/${params.sample}/
+        ╚══════════════════════════════════════════════════╝
+        """.stripIndent()
+    }
 }
 
