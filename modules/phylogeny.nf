@@ -2,9 +2,6 @@ process PHYLO_PREP {
     tag "$meta.id"
     publishDir "${params.outdir}/${meta.id}/phylo/markers", mode: 'copy'
 
-    when:
-    !params.skip_phylo
-
     input:
     tuple val(meta), path(taxonomy)
     tuple val(meta2), path(gbk)
