@@ -1,0 +1,47 @@
+# =============================================================================
+# Phage Genomics Pipeline — User configuration
+# Edit this file and run:
+#   nextflow run /home/lucas/analyses/phages/phage-nf/main.nf \
+#     -params-file config.yaml \
+#     -profile apptainer     # or: docker | conda
+# =============================================================================
+
+# ── Sample and reads ───────────────────────────────────────────────────────
+sample:     "B3"
+reads_r1:   "B3_1.fq.gz"
+reads_r2:   "B3_2.fq.gz"
+outdir:     "results_B3"
+
+# ── Phage information (used in figure titles and FASTA headers) ───────────
+phage_name: "Ralstonia phage B3"
+host:       "Ralstonia solanacearum"
+
+# ── Compute resources ─────────────────────────────────────────────────────
+threads:    40
+max_memory: "120.GB"
+max_cpus:   40
+
+# ── Database paths (NAS) ──────────────────────────────────────────────────
+pharokka_db:   "/media/nas1/LITRP.DBs/metagenDBs/pharokka_db"
+phold_db:      "/media/nas1/LITRP.DBs/metagenDBs/phold_db"
+checkv_db:     "/media/nas1/LITRP.DBs/metagenDBs/checkv_db"
+taxmyphage_db: "/media/nas1/LITRP.DBs/metagenDBs/taxmyphage"
+vibrant_db:    "/media/nas1/LITRP.DBs/metagenDBs/vibrant-1.0.1"
+msl:           "/home/lucas/analyses/phages/ICTV_Master_Species_List_2025_MSL41.v1.xlsx"
+
+# ── NCBI Entrez ────────────────────────────────────────────────────────────
+ncbi_email:   "lucasmelobiomed@gmail.com"
+ncbi_api_key: ""   # optional — raises rate limit to 10 req/s
+
+# ── Analysis parameters ────────────────────────────────────────────────────
+fastp_min_qual:   20
+fastp_min_len:    50
+phylo_markers:    "terminase large subunit,major capsid protein"
+clinker_top_n:    6      # number of closest genomes included in Clinker
+clinker_identity: 0.3    # minimum identity threshold for Clinker links
+
+# ── Optional steps (true = skip) ──────────────────────────────────────────
+skip_vibrant:      false
+skip_comparative:  false   # FastANI + VIRIDIC + reference download
+skip_phylo:        false   # MAFFT + trimAl + IQ-TREE2
+skip_clinker:      false

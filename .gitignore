@@ -1,0 +1,26 @@
+# Nextflow working directories
+.nextflow/
+.nextflow.log*
+work/
+
+# Result directories (user-specific)
+results_*/
+results/
+
+# Apptainer/Singularity images
+*.sif
+*.img
+
+# Config with sensitive data (users should keep their own copy)
+# config.yaml is tracked as a template; add a personal copy here if needed
+my_*.yaml
+*_run.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
