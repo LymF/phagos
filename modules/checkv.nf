@@ -1,6 +1,6 @@
 process CHECKV {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/checkv", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/checkv" }, mode: 'copy'
 
     input:
     tuple val(meta), path(contigs)
@@ -22,7 +22,7 @@ process CHECKV {
 // Seleciona o contig principal (Complete > High-quality > mais longo)
 process SELECT_CONTIG {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}" }, mode: 'copy'
 
     input:
     tuple val(meta), path(summary)

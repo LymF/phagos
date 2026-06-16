@@ -1,6 +1,6 @@
 process FASTP {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/fastp", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/fastp" }, mode: 'copy'
 
     input:
     tuple val(meta), path(r1), path(r2)

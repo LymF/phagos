@@ -1,6 +1,6 @@
 process GENOME_MAP {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/figures", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/figures" }, mode: 'copy'
 
     input:
     tuple val(meta), path(gbk)

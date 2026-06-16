@@ -1,6 +1,6 @@
 process PHYLO_PREP {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/phylo/markers", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/phylo/markers" }, mode: 'copy'
 
     input:
     tuple val(meta), path(taxonomy)
@@ -26,7 +26,7 @@ process PHYLO_PREP {
 
 process MAFFT {
     tag "${meta.id}:${faa.baseName}"
-    publishDir "${params.outdir}/${meta.id}/phylo", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/phylo" }, mode: 'copy'
 
     input:
     tuple val(meta), path(faa)
@@ -58,7 +58,7 @@ process TRIMAL {
 
 process IQTREE {
     tag "${meta.id}:${trimmed.baseName}"
-    publishDir "${params.outdir}/${meta.id}/phylo", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/phylo" }, mode: 'copy'
 
     input:
     tuple val(meta), path(trimmed)

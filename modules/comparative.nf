@@ -1,6 +1,6 @@
 process COMPARATIVE_PREP {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/comparative", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/comparative" }, mode: 'copy'
 
     input:
     tuple val(meta), path(genome)
@@ -31,7 +31,7 @@ process COMPARATIVE_PREP {
 
 process CLINKER {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/figures", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/figures" }, mode: 'copy'
 
     input:
     tuple val(meta), path(clinker_dir)
@@ -51,7 +51,7 @@ process CLINKER {
 
 process CLINKER_PHROGS {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/figures", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/figures" }, mode: 'copy'
 
     input:
     tuple val(meta), path(clinker_dir), path(clinker_html)

@@ -1,6 +1,6 @@
 process TAXMYPHAGE {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/taxmy", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/taxmy" }, mode: 'copy'
 
     input:
     tuple val(meta), path(genome)
@@ -22,7 +22,7 @@ process TAXMYPHAGE {
 
 process PHAROKKA {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/pharokka", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/pharokka" }, mode: 'copy'
 
     input:
     tuple val(meta), path(genome)
@@ -48,7 +48,7 @@ process PHAROKKA {
 
 process PHOLD {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/phold", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/phold" }, mode: 'copy'
 
     input:
     tuple val(meta), path(gbk)
@@ -71,7 +71,7 @@ process PHOLD {
 
 process VIBRANT {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/vibrant", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/vibrant" }, mode: 'copy'
 
     input:
     tuple val(meta), path(genome)

@@ -33,7 +33,7 @@ process BWA_MEM {
 
 process SAMTOOLS_DEPTH {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/coverage", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/coverage" }, mode: 'copy'
 
     input:
     tuple val(meta), path(bam)

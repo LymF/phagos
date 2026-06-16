@@ -1,6 +1,6 @@
 process UNICYCLER {
     tag "$meta.id"
-    publishDir "${params.outdir}/${meta.id}/assembly", mode: 'copy'
+    publishDir { "${params.outdir}/${meta.id}/assembly" }, mode: 'copy'
 
     input:
     tuple val(meta), path(r1), path(r2)
