@@ -63,7 +63,7 @@ docker run hello-world
 ## 3. Install the pipeline
 
 ```bash
-git clone https://github.com/<your-org>/phagos.git
+git clone https://github.com/LymF/phagos.git
 cd phagos
 
 # Or copy directly to the server
